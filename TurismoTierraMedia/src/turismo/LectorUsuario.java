@@ -13,7 +13,7 @@ public class LectorUsuario {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
-			fr = new FileReader("src/usuarios.txt");
+			fr = new FileReader("src/archivosDeEntrada/usuarios.txt");
 			br = new BufferedReader(fr);
 			// Lectura del fichero
 			String linea = br.readLine();
