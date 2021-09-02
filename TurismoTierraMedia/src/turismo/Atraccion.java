@@ -42,7 +42,5 @@ public class Atraccion extends Producto {
 		return "A/ " + nombre + " [Tipo de atracción = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
 				+ " horas, Cupo máximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
 	}
-	
-	
 
 }
