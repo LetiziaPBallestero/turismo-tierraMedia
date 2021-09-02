@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.LinkedList;
 import java.util.List;
 
 public class LectorAtraccion {
 	
 	public List<Atraccion> leerAtraccion(String file) throws AtraccionException {
-		List <Atraccion> atracciones = new ArrayList<Atraccion>();
+		List <Atraccion> atracciones = new LinkedList<Atraccion>();
 		FileReader fr = null;
 		BufferedReader br = null;
 
@@ -52,7 +52,7 @@ public class LectorAtraccion {
 		if(lin.length!=5) {
 			throw new AtraccionException("Cantidad de parámetros errónea");
 		}
-		return new Atraccion(TipoDeAtraccion.valueOf(lin[0]), lin[1],
+		return new Atraccion(lin[0], TipoDeAtraccion.valueOf(lin[1]),
 				Integer.parseInt(lin[2]), Double.parseDouble(lin[3]), Integer.parseInt(lin[4]));
 	}
 

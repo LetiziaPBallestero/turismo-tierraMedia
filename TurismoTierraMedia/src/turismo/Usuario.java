@@ -16,7 +16,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [Tipo de atracción preferido = " + tipoDeAtraccionPreferido + ", Nombre = " + nombre + ", Presupuesto = "
+		return "U/ " + nombre + " [Tipo de atracción preferido = " + tipoDeAtraccionPreferido + ", Presupuesto = "
 				+ presupuesto + " monedas, Tiempo disponible = " + tiempoDisponible + " horas]";
 	}
 	
