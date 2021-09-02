@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LectorUsuario {
 	
-	public void leerUsuario() throws UsuarioException {
+	public List<Usuario> leerUsuario(String file) throws UsuarioException {
 		List <Usuario> usuarios = new ArrayList<Usuario>();
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -17,12 +17,17 @@ public class LectorUsuario {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
-			fr = new FileReader("src/archivosDeEntrada/usuarios.csv");
+			fr = new FileReader(file);
 			br = new BufferedReader(fr);
 			// Lectura del fichero
 			String linea = br.readLine();
 			while ((linea != null)) {
-				this.crearEImprimirUsuario(linea);
+				try {
+					usuarios.add(this.crearUsuario(linea));
+				}
+				catch (UsuarioException e) {
+					System.out.println(e.getMessage());
+				}
 				linea = br.readLine();
 			}
 		} catch (IOException e) {
@@ -39,21 +44,16 @@ public class LectorUsuario {
 				e2.printStackTrace();
 			}
 		}
+		return usuarios;
 	}
 	
-	private Usuario crearEImprimirUsuario(String linea) throws UsuarioException {
+	private Usuario crearUsuario(String linea) throws UsuarioException {
 		String lin[] = linea.split(",");
 		if(lin.length!=4) {
 			throw new UsuarioException("Cantidad de parámetros errónea");
 		}
-		System.out.println(new Usuario(TipoDeAtraccion.valueOf(lin[0].toUpperCase()), lin[1],
-				Integer.parseInt(lin[2]), Double.parseDouble(lin[3])).toString());
 		return new Usuario(TipoDeAtraccion.valueOf(lin[0]), lin[1],
 				Integer.parseInt(lin[2]), Double.parseDouble(lin[3]));
 	}
-	
-	public static void main(String[] args) throws UsuarioException {
-		LectorUsuario lectorUsuario = new LectorUsuario();
-		lectorUsuario.leerUsuario();
-	}
+
 }
