@@ -1,31 +1,46 @@
 package turismo;
 
-public class Atraccion extends Producto
-{
-	private int costoAtraccion;
+public class Atraccion extends Producto {
+	private TipoDeAtraccion tipo;
+	private String nombre;
+	private int costo;
 	private double tiempo;
 	private int cupoMaximo;
 	private int cuposOcupados;
-	private TipoDeAtraccion tipoDeAtraccion;
 
-	public int getCosto()
-	{
-		return costoAtraccion;
+	public Atraccion(String nombre, TipoDeAtraccion tipo, int costo, double tiempo, int cupo) {
+		super();
+		this.nombre = nombre;
+		this.tipo = tipo;
+		this.costo = costo;
+		this.tiempo = tiempo;
+		this.cupoMaximo = cupo;
 	}
 
-	public double getTiempo()
-	{
+	public TipoDeAtraccion getTipo() {
+		return tipo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public int getCosto() {
+		return costo;
+	}
+
+	public double getTiempo() {
 		return tiempo;
 	}
 
-	public TipoDeAtraccion getTipoDeAtraccion()
-	{
-		return tipoDeAtraccion;
+	public boolean hayCupo() {
+		return this.cuposOcupados < this.cupoMaximo;
 	}
 
-	public boolean hayCupo(int cuposOcupados)
-	{
-		return cuposOcupados < cupoMaximo;
+	@Override
+	public String toString() {
+		return "A/ " + nombre + " [Tipo de atracci�n = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
+				+ " horas, Cupo m�ximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
 	}
 
 }
