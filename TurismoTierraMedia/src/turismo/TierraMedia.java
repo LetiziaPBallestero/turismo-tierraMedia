@@ -6,27 +6,27 @@ import java.util.List;
 public class TierraMedia {
 	private static List<Usuario> usuarios;
 	private static List<Producto> productos = new LinkedList<Producto>();
-	
+
 	public static void main(String[] args) throws UsuarioException, AtraccionException, PromocionException {
 		List<Atraccion> atracciones = new LinkedList<Atraccion>();
 		List<Promocion> promociones = new LinkedList<Promocion>();
-		
+
 		LectorUsuario lectorUsuario = new LectorUsuario();
 		TierraMedia.usuarios = lectorUsuario.leerUsuario("src/archivosDeEntrada/usuarios.csv");
-		for(Usuario u : usuarios) {
-			System.out.println(u);			
+		for (Usuario u : usuarios) {
+			System.out.println(u);
 		}
+
 		LectorAtraccion lectorAtraccion = new LectorAtraccion();
 		atracciones = lectorAtraccion.leerAtraccion("src/archivosDeEntrada/atracciones.csv");
-		for(Atraccion a : atracciones) {
-			System.out.println(a);
-			productos.add(a);
-		}
+		productos.addAll(atracciones);
+
 		LectorPromocion lectorPromocion = new LectorPromocion();
-		promociones = lectorPromocion.leerPromocion("src/archivosDeEntrada/promociones.csv");
-		for(Promocion p : promociones) {
+		promociones = lectorPromocion.leerPromocion("src/archivosDeEntrada/promociones.csv", atracciones);
+		productos.addAll(promociones);
+		
+		for(Producto p : productos) {
 			System.out.println(p);
-			productos.add(p);
 		}
 	}
 

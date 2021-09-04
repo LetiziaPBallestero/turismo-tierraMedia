@@ -11,7 +11,7 @@ public class PromocionAbsoluta extends Promocion {
 
 	@Override
 	public String toString() {
-		return "PromocionAbsoluta [tipoPromocion=" + tipoPromocion + ", atracciones=" + atracciones + ", costo=" + costo
+		return "Promocion Absoluta [tipoPromocion=" + tipoPromocion + ", atracciones=" + atracciones + ", costo=" + costo
 				+ ", tipoDeAtraccion=" + tipoDeAtraccion + "]";
 	}
 	

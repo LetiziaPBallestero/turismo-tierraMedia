@@ -12,7 +12,7 @@ public class PromocionPorcentual extends Promocion {
 
 	@Override
 	public String toString() {
-		return "PromocionPorcentual [descuento=" + descuento + "]";
+		return "Promocion Porcentual [descuento=" + descuento + "]";
 	}
 	
 
