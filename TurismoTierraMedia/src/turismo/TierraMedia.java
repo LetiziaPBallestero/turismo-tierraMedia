@@ -1,11 +1,12 @@
 package turismo;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TierraMedia {
 	private static List<Usuario> usuarios;
-	private static List<Producto> productos = new LinkedList<Producto>();
+	private static List<Producto> productos = new ArrayList<Producto>();
 	
 	public static void main(String[] args) throws UsuarioException, AtraccionException {
 		List<Atraccion> atracciones = new LinkedList<Atraccion>();

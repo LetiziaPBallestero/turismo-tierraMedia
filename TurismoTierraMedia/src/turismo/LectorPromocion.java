@@ -16,7 +16,7 @@ public class LectorPromocion {
 			
 			String linea = br.readLine (); 
 			while (( linea != null)) {
-				this.crearEImprimirPromocion (linea);
+				this.crearPromocion (linea);
 				linea = br.readLine();
 			}
 		} catch (IOException e) {
