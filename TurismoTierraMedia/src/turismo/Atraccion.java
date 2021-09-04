@@ -8,11 +8,10 @@ public class Atraccion extends Producto {
 	private int cupoMaximo;
 	private int cuposOcupados;
 
-	public Atraccion(String nombre,TipoDeAtraccion tipoAtraccion,int costo, double tiempo, int cupoMaximo) {
+	public Atraccion(String nombre, TipoDeAtraccion tipoAtraccion, int costo, double tiempo, int cupoMaximo) {
 		super(costo, tiempo, tipoAtraccion);
 		this.nombre = nombre;
 		this.cupoMaximo = cupoMaximo;
-		this.cuposOcupados = cuposOcupados;
 		// TODO Auto-generated constructor stub
 	}
 
