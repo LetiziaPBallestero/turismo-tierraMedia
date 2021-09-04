@@ -1,7 +1,7 @@
 package turismo;
 
 public class Atraccion extends Producto {
-	private TipoDeAtraccion tipo;
+	private TipoDeAtraccion tipoDeAtraccion;
 	private String nombre;
 	private int costo;
 	private double tiempo;
@@ -9,16 +9,15 @@ public class Atraccion extends Producto {
 	private int cuposOcupados;
 
 	public Atraccion(String nombre, TipoDeAtraccion tipo, int costo, double tiempo, int cupo) {
-		super();
+		super(tipo);
 		this.nombre = nombre;
-		this.tipo = tipo;
 		this.costo = costo;
 		this.tiempo = tiempo;
 		this.cupoMaximo = cupo;
 	}
 
 	public TipoDeAtraccion getTipo() {
-		return tipo;
+		return tipoDeAtraccion;
 	}
 
 	public String getNombre() {
@@ -39,7 +38,7 @@ public class Atraccion extends Producto {
 
 	@Override
 	public String toString() {
-		return "A/ " + nombre + " [Tipo de atracción = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
+		return "A/ " + nombre + " [Tipo de atracción = " + tipoDeAtraccion + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
 				+ " horas, Cupo máximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
 	}
 

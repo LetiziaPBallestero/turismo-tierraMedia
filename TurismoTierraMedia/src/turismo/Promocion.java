@@ -1,16 +1,16 @@
 package turismo;
 
+import java.util.List;
+
 public abstract class Promocion extends Producto {
 	protected TipoDePromocion tipoPromocion;
 	protected List <Atraccion> atracciones; 
-	protected int cantidadDeAtracciones; 
 	protected List <Promocion> promociones; 
 	protected double costo; 
 	
-	public Promocion (TipoDeAtraccion tipo, TipoDePromocion promociones, int cantidad, List <Atraccion> atracciones) {
-		super(tipo);
-		this.tipoPromocion = promociones;
-		this.cantidadDeAtracciones = cantidad;
+	public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List <Atraccion> atracciones) {
+		super(tipoDeAtraccion);
+		this.tipoPromocion = tipoPromocion;
 		this.atracciones = atracciones;
 	}
 	

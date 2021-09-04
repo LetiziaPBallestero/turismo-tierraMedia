@@ -1,6 +1,6 @@
 package turismo;
 
-import java.util.Arraylist;
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,10 +26,10 @@ public class LectorPromocion {
 				catch (PromocionException e) {
 					System.out.println (e.getMessage());
 				}
-				linea = br.readline();
+				linea = br.readLine();
 			}
 		} catch (IOException e) {
-			e.printStacjTrace();
+			e.printStackTrace();
 		} finally {
 			try {
 				if (fr != null) {
