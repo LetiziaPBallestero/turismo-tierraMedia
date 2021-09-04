@@ -10,7 +10,8 @@ import java.util.List;
 
 public class LectorPromocion {
 	
-	public List <Promocion> leerPromocion (String file) throws PromocionException {
+	
+	public List <Promocion> leerPromocion (String file) throws PromocionException, AtraccionException {
 		List <Promocion> promociones = new LinkedList <Promocion>();
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -42,24 +43,49 @@ public class LectorPromocion {
 		return promociones;
 	}
 	
-	private Promocion crearPromocion(String linea) throws PromocionException {
+	private Promocion crearPromocion(String linea) throws PromocionException, AtraccionException {
 			String lin[] = linea.split(",");
-			if(lin.length!=5) {
-				throw new AtraccionException("Cantidad de parámetros errónea");
-			}
-
+			Promocion promo = null;
+			
 			if (lin[0].toLowerCase() == "axb") {
-				return new PromocionAxB(TipoDeAtraccion.valueOf(lin[1]), );
+				List<Atraccion> atraccionesPromo = null;
+				agregarAtraccionesAPromo(lin[3], atraccionesPromo);
+				agregarAtraccionesAPromo(lin[4], atraccionesPromo);
+				if (lin[5] != null){
+					agregarAtraccionesAPromo(lin[5], atraccionesPromo);
+				}
+				promo = new PromocionAxB(TipoDePromocion.valueOf(lin[0]), TipoDeAtraccion.valueOf(lin[1]), atraccionesPromo);
 			}
 			if (lin[0].toLowerCase() == "absoluta") {
-				return new PromocionAbsoluta();
+				List<Atraccion> atraccionesPromo = null;
+				agregarAtraccionesAPromo(lin[3], atraccionesPromo);
+				agregarAtraccionesAPromo(lin[4], atraccionesPromo);
+				if (lin[5] != null) {
+					agregarAtraccionesAPromo(lin[5], atraccionesPromo);
+				}
+				promo = new PromocionAbsoluta(TipoDePromocion.valueOf(lin[0]), TipoDeAtraccion.valueOf(lin[1]), Integer.parseInt(lin[2]), atraccionesPromo);
 			}
 			if (lin[0].toLowerCase() == "porcentual") {
-				return new PromocionPorcentual(Strings convertidos a datos);
+				List<Atraccion> atraccionesPromo = null;
+				agregarAtraccionesAPromo(lin[3], atraccionesPromo);
+				agregarAtraccionesAPromo(lin[4], atraccionesPromo);
+				if (lin[5] != null) {
+					agregarAtraccionesAPromo(lin[5], atraccionesPromo);
+				}
+				promo = new PromocionPorcentual(TipoDePromocion.valueOf(lin[0]), TipoDeAtraccion.valueOf(lin[1]), Integer.parseInt(lin[2]), atraccionesPromo);
 			}
-			return //hace error
+			return promo;
 		}
 
-	
+	private void agregarAtraccionesAPromo(String nombre, List<Atraccion> atraccionesPromo) throws AtraccionException {
+		List<Atraccion> atracciones;
+        LectorAtraccion lectorAtraccion = new LectorAtraccion();
+        atracciones = lectorAtraccion.leerAtraccion("src/archivosDeEntrada/atracciones.csv");
+        for(Atraccion a : atracciones) {
+        if(nombre == a.getNombre()) {
+            atraccionesPromo.add(a);
+        }
+    }
+}
 	
 }
