@@ -10,4 +10,7 @@ public abstract class Producto {
 		this.tiempo = tiempo;
 		this.tipoAtraccion = tipoAtraccion;
 	}
+	public boolean esPromo() {
+	return 	
+	}
 }

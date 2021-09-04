@@ -8,8 +8,7 @@ public class Atraccion extends Producto {
 	private int cupoMaximo;
 	private int cuposOcupados;
 
-	public Atraccion(String nombre, int costo, double tiempo, TipoDeAtraccion tipoAtraccion, int cupoMaximo,
-			int cuposOcupados) {
+	public Atraccion(String nombre,TipoDeAtraccion tipoAtraccion,int costo, double tiempo, int cupoMaximo) {
 		super(costo, tiempo, tipoAtraccion);
 		this.nombre = nombre;
 		this.cupoMaximo = cupoMaximo;
@@ -39,8 +38,8 @@ public class Atraccion extends Producto {
 
 	@Override
 	public String toString() {
-		return "A/ " + nombre + " [Tipo de atracci�n = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
-				+ " horas, Cupo m�ximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
+		return "A/ " + nombre + " [Tipo de atracción = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
+				+ " horas, Cupo máximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
 	}
 
 }
