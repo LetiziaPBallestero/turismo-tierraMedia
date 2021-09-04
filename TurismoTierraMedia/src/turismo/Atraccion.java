@@ -8,13 +8,13 @@ public class Atraccion extends Producto {
 	private int cupoMaximo;
 	private int cuposOcupados;
 
-	public Atraccion(String nombre, TipoDeAtraccion tipo, int costo, double tiempo, int cupo) {
-		super();
+	public Atraccion(String nombre, int costo, double tiempo, TipoDeAtraccion tipoAtraccion, int cupoMaximo,
+			int cuposOcupados) {
+		super(costo, tiempo, tipoAtraccion);
 		this.nombre = nombre;
-		this.tipo = tipo;
-		this.costo = costo;
-		this.tiempo = tiempo;
-		this.cupoMaximo = cupo;
+		this.cupoMaximo = cupoMaximo;
+		this.cuposOcupados = cuposOcupados;
+		// TODO Auto-generated constructor stub
 	}
 
 	public TipoDeAtraccion getTipo() {
