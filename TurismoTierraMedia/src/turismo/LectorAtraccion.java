@@ -10,7 +10,7 @@ import java.util.List;
 public class LectorAtraccion {
 	
 	public List<Atraccion> leerAtraccion(String file) throws AtraccionException {
-		List <Atraccion> atracciones = new LinkedList<Atraccion>();
+		List <Atraccion> atracciones = new ArrayList<Atraccion>();
 		FileReader fr = null;
 		BufferedReader br = null;
 
