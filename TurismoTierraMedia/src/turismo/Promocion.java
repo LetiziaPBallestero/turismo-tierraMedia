@@ -7,5 +7,9 @@ public abstract class Promocion extends Producto {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	@Override
+	public boolean esPromo() {
+		return true;
+	}
+
 }

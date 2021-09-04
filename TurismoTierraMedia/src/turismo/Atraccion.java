@@ -37,8 +37,8 @@ public class Atraccion extends Producto {
 
 	@Override
 	public String toString() {
-		return "A/ " + nombre + " [Tipo de atracci√≥n = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
-				+ " horas, Cupo m√°ximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
+		return "A/ " + nombre + " [Tipo de atracciÛn = " + tipo + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
+				+ " horas, Cupo m·ximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
 	}
 
 }
