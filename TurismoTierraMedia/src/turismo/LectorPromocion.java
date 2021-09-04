@@ -34,6 +34,25 @@ public class LectorPromocion {
 	
 	private Promocion crearEImprimirPromocion (string linea) {
 	// antes de crear este método tengo que consultar cómo va a ser el archivo de promocion 
+		
+	private Promocion crearPromocion(String linea) {
+			String lin[] = linea.split(",");
+			/*if(lin.length!=5) {
+				throw new AtraccionException("Cantidad de parámetros errónea");
+			}
+			*/
+			if (lin[0].toLowerCase() == "axb") {
+				return new PromocionAxB(TipoDeAtraccion.valueOf(lin[1]), );
+			}
+			if (lin[0].toLowerCase() == "absoluta") {
+				return new PromocionAbsoluta();
+			}
+			if (lin[0].toLowerCase() == "porcentual") {
+				return new PromocionPorcentual(Strings convertidos a datos);
+			}
+			return //hace error
+		}
+
 	
 	
 }
