@@ -10,4 +10,10 @@ public class PromocionPorcentual extends Promocion {
 		this.descuento = descuento;
 	}
 
+	@Override
+	public String toString() {
+		return "PromocionPorcentual [descuento=" + descuento + "]";
+	}
+	
+
 }

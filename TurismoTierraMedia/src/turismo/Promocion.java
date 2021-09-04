@@ -5,7 +5,6 @@ import java.util.List;
 public abstract class Promocion extends Producto {
 	protected TipoDePromocion tipoPromocion;
 	protected List <Atraccion> atracciones; 
-	protected List <Promocion> promociones; 
 	protected double costo; 
 	
 	public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List <Atraccion> atracciones) {
@@ -17,6 +16,13 @@ public abstract class Promocion extends Producto {
 	protected double aplicarPromocion () {
 		return this.costo;
 	}
+
+	@Override
+	public String toString() {
+		return "Promocion [Tipo de promoción = " + tipoPromocion + ", Atracciones = " + atracciones + ", Costo = " + costo + "]";
+	}
+	
+	
 }
 
 // falta el toString

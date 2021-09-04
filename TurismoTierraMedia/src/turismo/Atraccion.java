@@ -1,7 +1,6 @@
 package turismo;
 
 public class Atraccion extends Producto {
-	private TipoDeAtraccion tipoDeAtraccion;
 	private String nombre;
 	private int costo;
 	private double tiempo;

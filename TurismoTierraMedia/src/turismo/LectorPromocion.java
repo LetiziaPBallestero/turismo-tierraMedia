@@ -49,29 +49,33 @@ public class LectorPromocion {
 			
 			if (lin[0].toLowerCase() == "axb") {
 				List<Atraccion> atraccionesPromo = null;
-				validarAtracciones(lin, atraccionesPromo);
+				agregarAtraccionesAPromo(lin[3], atraccionesPromo);
+				agregarAtraccionesAPromo(lin[4], atraccionesPromo);
+				if (lin[5] != null){
+					agregarAtraccionesAPromo(lin[5], atraccionesPromo);
+				}
 				promo = new PromocionAxB(TipoDePromocion.valueOf(lin[0]), TipoDeAtraccion.valueOf(lin[1]), atraccionesPromo);
 			}
 			if (lin[0].toLowerCase() == "absoluta") {
 				List<Atraccion> atraccionesPromo = null;
-				validarAtracciones(lin, atraccionesPromo);
+				agregarAtraccionesAPromo(lin[3], atraccionesPromo);
+				agregarAtraccionesAPromo(lin[4], atraccionesPromo);
+				if (lin[5] != null) {
+					agregarAtraccionesAPromo(lin[5], atraccionesPromo);
+				}
 				promo = new PromocionAbsoluta(TipoDePromocion.valueOf(lin[0]), TipoDeAtraccion.valueOf(lin[1]), Integer.parseInt(lin[2]), atraccionesPromo);
 			}
 			if (lin[0].toLowerCase() == "porcentual") {
 				List<Atraccion> atraccionesPromo = null;
-				validarAtracciones(lin, atraccionesPromo);
+				agregarAtraccionesAPromo(lin[3], atraccionesPromo);
+				agregarAtraccionesAPromo(lin[4], atraccionesPromo);
+				if (lin[5] != null) {
+					agregarAtraccionesAPromo(lin[5], atraccionesPromo);
+				}
 				promo = new PromocionPorcentual(TipoDePromocion.valueOf(lin[0]), TipoDeAtraccion.valueOf(lin[1]), Integer.parseInt(lin[2]), atraccionesPromo);
 			}
 			return promo;
 		}
-
-	private void validarAtracciones(String[] lin, List<Atraccion> atraccionesPromo) throws AtraccionException {
-		agregarAtraccionesAPromo(lin[3], atraccionesPromo);
-		agregarAtraccionesAPromo(lin[4], atraccionesPromo);
-		if (lin[5] != null){
-			agregarAtraccionesAPromo(lin[5], atraccionesPromo);
-		}
-	}
 
 	private void agregarAtraccionesAPromo(String nombre, List<Atraccion> atraccionesPromo) throws AtraccionException {
 		List<Atraccion> atracciones;

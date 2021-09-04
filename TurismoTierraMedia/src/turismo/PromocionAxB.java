@@ -10,6 +10,13 @@ public class PromocionAxB extends Promocion {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "PromocionAxB [tipoPromocion=" + tipoPromocion + ", atracciones=" + atracciones + ", costo=" + costo
+				+ ", tipoDeAtraccion=" + tipoDeAtraccion + "]";
+	}
+	
+	
 /*
 	public PromocionAXB (TipoDeAtraccion tipo, TipoDePromocion promocion, int cantidad, double costo, List <Atraccion> atracciones) {
 		super (tipo, promocion, cantidad, atracciones); 
