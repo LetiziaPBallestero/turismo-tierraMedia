@@ -2,7 +2,7 @@ package turismo;
 
 public abstract class Promocion extends Producto {
 
-	public Promocion(int costo, double tiempo, TipoDeAtraccion tipoAtraccion) {
+	public Promocion(TipoDeAtraccion tipoAtraccion,int costo, double tiempo) {
 		super(costo, tiempo, tipoAtraccion);
 		// TODO Auto-generated constructor stub
 	}
