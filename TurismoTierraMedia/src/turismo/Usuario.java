@@ -32,6 +32,10 @@ public class Usuario {
 	public ArrayList<Producto> getItinerario() {
 		return itinerario;
 	}
+	
+	public void agregarAItinerario(Producto producto) {
+		itinerario.add(producto);
+	}
 
 	@Override
 	public String toString() {
