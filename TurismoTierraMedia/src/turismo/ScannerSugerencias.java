@@ -36,21 +36,18 @@ public class ScannerSugerencias {
 			System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
 			opcion = sc.next();
 		}
-		sc.close();
 		return opcion.toLowerCase().equals("si");
 	}
 	
 	
 	public void mostrar(Usuario usuario) {
 		Iterator<Producto> iterador = this.productos.iterator();
-
 		while (iterador.hasNext()){
 		     Producto p = iterador.next();
 		     System.out.println(p);
 		     if (this.ofrecer()){
 		    	 usuario.agregarAItinerario(p);
 		     }
-	         iterador.remove();
 		 }
 		
 		/*for (Producto p : ScannerSugerencias.productos) {
@@ -63,14 +60,18 @@ public class ScannerSugerencias {
 	}
 	
 	public void mostrarATodos() {
+		List<Usuario> aux = new LinkedList<Usuario>();
 		Iterator<Usuario> iterador = this.usuarios.iterator();
-
 		while (iterador.hasNext()){
 		     Usuario u = iterador.next();
 		     System.out.println(u);
 		     this.mostrar(u);
+		     aux.add(u);
 	         iterador.remove();
 		 }
+		for (Usuario u : aux) {
+			System.out.println("Itinerario de " + u.getNombre() + ": "+ u.getItinerario());
+		}
 		
 		/*for (Usuario u : ScannerSugerencias.usuarios) {
 			System.out.println(u);

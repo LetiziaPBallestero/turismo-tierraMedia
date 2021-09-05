@@ -44,4 +44,8 @@ public class Usuario {
 				+ presupuesto + " monedas, Tiempo disponible = " + tiempoDisponible + " horas]";
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
 }

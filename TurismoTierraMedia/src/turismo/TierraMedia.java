@@ -14,6 +14,7 @@ public class TierraMedia {
 		
 		
 		
+		
 		/*List<Atraccion> atracciones = new LinkedList<Atraccion>();
 		List<Promocion> promociones = new LinkedList<Promocion>();
 
