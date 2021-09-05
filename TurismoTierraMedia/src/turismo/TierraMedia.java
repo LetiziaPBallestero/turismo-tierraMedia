@@ -4,11 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TierraMedia {
-	private static List<Usuario> usuarios;
-	private static List<Producto> productos = new LinkedList<Producto>();
+	//private static List<Usuario> usuarios;
+	//private static List<Producto> productos = new LinkedList<Producto>();
 
 	public static void main(String[] args) throws UsuarioException, AtraccionException, PromocionException {
-		List<Atraccion> atracciones = new LinkedList<Atraccion>();
+		ScannerSugerencias sc = new ScannerSugerencias();
+		sc.escanearUsuariosYProductos();
+		sc.mostrarATodos();
+		
+		
+		
+		/*List<Atraccion> atracciones = new LinkedList<Atraccion>();
 		List<Promocion> promociones = new LinkedList<Promocion>();
 
 		LectorUsuario lectorUsuario = new LectorUsuario();
@@ -28,6 +34,7 @@ public class TierraMedia {
 		for(Producto p : productos) {
 			System.out.println(p);
 		}
+		*/
 	}
 
 }
