@@ -1,0 +1,10 @@
+AXB,PAISAJE,3,Minas Tirith,Abismo de Helm,Erebor
+AXB,AVENTURA,3,Moria,Bosque Negro,Mordor
+AXB,DEGUSTACION,2,Lothlorien,La Comarca
+ABSOLUTAS,DEGUSTACION,36,Lothlorien,La Comarca
+ABSOLUTAS,PAISAJE,13,Abismo de Helm,Erebor
+ABSOLUTAS,AVENTURA,30,Mordor,Moria
+PORCENTUALES,DEGUSTACION,20,Lothlorien,La Comarca
+PORCENTUALES,AVENTURA,20,Bosque Negro,Mordor
+PORCENTUALES,PAISAJE,30,Minas Tirith,Abismo de Heml,Erebor
+PORCENTUALES,AVENTURA,50,Moria,Bosque Negro,Mordor
