@@ -14,17 +14,20 @@ public abstract class Promocion extends Producto {
 		this.atracciones = atracciones;
 	}
 	
-	protected double aplicarPromocion () {
-		return this.costo;
+	protected void aplicarPromocion () {
 	}
 	
 	protected double getTiempo() {
 		return this.tiempo;
 	}
+	
+	protected double getCosto() {
+		return this.costo;
+	}
 
 	@Override
 	public String toString() {
-		return "P " + tipoPromocion + "/ [Costo total = " + costo + ", Atracciones = " + atracciones + "]";
+		return "P " + tipoPromocion + "/ [Costo total = " + this.getCosto() + ", Tiempo total = " + this.getTiempo() + " horas, Atracciones = " + atracciones + "]";
 	}
 	
 }

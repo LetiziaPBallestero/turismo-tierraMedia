@@ -8,4 +8,12 @@ public class PromocionAbsoluta extends Promocion {
 		super(tipoPromocion, tipoDeAtraccion, atracciones);
 		this.costo = costo;
 	}
+	
+	@Override
+	public double getTiempo() {
+		for (Atraccion atraccion : this.atracciones) {
+			this.tiempo += atraccion.getTiempo();
+		}
+		return this.tiempo;
+	}
 }

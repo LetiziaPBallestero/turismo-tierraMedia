@@ -1,33 +1,31 @@
 package turismo;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PromocionAxB extends Promocion {
-	
 
 	public PromocionAxB(TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List<Atraccion> atracciones) {
 		super(tipoPromocion, tipoDeAtraccion, atracciones);
-		// TODO Auto-generated constructor stub
+		this.aplicarPromocion();
 	}
-/*	
+
 	@Override 
-	protected double aplicarPromocion () {
-		double costoTotal; 
-		double tiempoTotal; 
-		List <String> atraccionesPagas = new ArrayList <String> (); 
-		
-		for (Atraccion atraccion : this.atracciones) {
-			atraccionesPagas.add(atracciones);
-			if (atraccion.tipo == this.tipo && !nuevasAtracciones.contains(atraccion.getNombre())) {
-				for (int i = 1 ; i < this.cantidadDeAtracciones; i++) {
-					costoTotal += atraccion.costo;
-				}
-				tiempoTotal += atraccion.tiempoDeDuracion;
-			}
+	protected void aplicarPromocion () {
+		List <Atraccion> atraccionesPagas = new LinkedList <Atraccion> (); 
+		for (int i = 0; i < (this.atracciones.size()-1); i++) {
+			atraccionesPagas.add(this.atracciones.get(i));
 		}
-		this.tiempoDeDuracion = tiempoTotal; 
-		return costoTotal; 
+		for (Atraccion atraccion : atraccionesPagas) {
+			this.costo += atraccion.getCosto();
+		}
 	}
-	*/
 	
+	@Override
+	public double getTiempo() {
+		for (Atraccion atraccion : this.atracciones) {
+			this.tiempo += atraccion.getTiempo();
+		}
+		return this.tiempo;
+	}
 }
