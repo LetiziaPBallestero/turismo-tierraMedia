@@ -19,10 +19,7 @@ public abstract class Promocion extends Producto {
 
 	@Override
 	public String toString() {
-		return "Promocion [Tipo de promoción = " + tipoPromocion + ", Atracciones = " + atracciones + ", Costo = " + costo + "]";
+		return "P " + tipoPromocion + "/ [Costo total = " + costo + ", Atracciones = " + atracciones + "]";
 	}
 	
-	
 }
-
-// falta el toString

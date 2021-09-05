@@ -40,5 +40,10 @@ public class Atraccion extends Producto {
 		return "A/ " + nombre + " [Tipo de atracción = " + tipoDeAtraccion + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
 				+ " horas, Cupo máximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
 	}
+	
+	public String toStringCorto() {
+		return nombre + ", " + costo + " monedas, " + tiempo
+				+ " horas]";
+	}
 
 }

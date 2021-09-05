@@ -8,12 +8,4 @@ public class PromocionAbsoluta extends Promocion {
 		super(tipoPromocion, tipoDeAtraccion, atracciones);
 		this.costo = costo;
 	}
-
-	@Override
-	public String toString() {
-		return "Promocion Absoluta [tipoPromocion=" + tipoPromocion + ", atracciones=" + atracciones + ", costo=" + costo
-				+ ", tipoDeAtraccion=" + tipoDeAtraccion + "]";
-	}
-	
-
 }
