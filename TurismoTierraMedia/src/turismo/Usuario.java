@@ -1,6 +1,5 @@
 package turismo;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Usuario {
@@ -8,7 +7,7 @@ public class Usuario {
 	private String nombre;
 	private int presupuesto;
 	private double tiempoDisponible;
-	private LinkedList<Producto> itinerario = new LinkedList();
+	private LinkedList<Producto> itinerario = new LinkedList<Producto>();
 
 	public Usuario(TipoDeAtraccion tipoDeAtraccionPreferido, String nombre, int presupuesto, double tiempoDisponible) {
 		super();

@@ -5,8 +5,6 @@ import java.util.List;
 public abstract class Promocion extends Producto {
 	protected TipoDePromocion tipoPromocion;
 	protected List <Atraccion> atracciones; 
-	protected double costo; 
-	protected double tiempo; 
 	
 	public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List <Atraccion> atracciones) {
 		super(tipoDeAtraccion);
@@ -15,14 +13,6 @@ public abstract class Promocion extends Producto {
 	}
 	
 	protected void aplicarPromocion () {
-	}
-	
-	protected double getTiempo() {
-		return this.tiempo;
-	}
-	
-	protected double getCosto() {
-		return this.costo;
 	}
 	
 	@Override
