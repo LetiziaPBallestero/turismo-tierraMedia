@@ -12,14 +12,14 @@ import java.util.Scanner;
 public class ScannerSugerencias {
 	private static List<Usuario> usuarios;
 	private static List<Producto> productos = new LinkedList<Producto>();
-	
+
 	public void escanearUsuariosYProductos() throws UsuarioException, PromocionException, AtraccionException {
 		List<Atraccion> atracciones = new LinkedList<Atraccion>();
 		List<Promocion> promociones = new LinkedList<Promocion>();
 
 		LectorUsuario lectorUsuario = new LectorUsuario();
 		ScannerSugerencias.usuarios = lectorUsuario.leerUsuario("src/archivosDeEntrada/usuarios.csv");
-		
+
 		LectorAtraccion lectorAtraccion = new LectorAtraccion();
 		atracciones = lectorAtraccion.leerAtraccion("src/archivosDeEntrada/atracciones.csv");
 		productos.addAll(atracciones);
@@ -27,11 +27,11 @@ public class ScannerSugerencias {
 		LectorPromocion lectorPromocion = new LectorPromocion();
 		promociones = lectorPromocion.leerPromocion("src/archivosDeEntrada/promociones.csv", atracciones);
 		productos.addAll(promociones);
-		
+
 	}
-		
+
 	public boolean ofrecer() {
-		
+
 		String opcion = "";
 		Scanner sc = new Scanner(System.in);
 		System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
@@ -42,66 +42,54 @@ public class ScannerSugerencias {
 		}
 		return opcion.toLowerCase().equals("si");
 	}
-	
-	
+
 	public void mostrar(Usuario usuario) {
 		ScannerSugerencias.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
 		Iterator<Producto> iterador = this.productos.iterator();
-		while (iterador.hasNext()){
-		     Producto p = iterador.next();
-		     if(usuario.getPresupuesto() >= p.getCosto() && usuario.getTiempoDisponible() >= p.getTiempo() && p.hayCupo()) {
-		     System.out.println(p);
-		     if (this.ofrecer()){
-		    	 usuario.agregarAItinerario(p);
-		    	 usuario.setPresupuesto(usuario.getPresupuesto() - p.getCosto());
-		    	 usuario.setTiempoDisponible(usuario.getTiempoDisponible() - p.getTiempo());
-		    	 p.ocuparCupo();
-		     }
-		     }
-		     else {
-		    	 try {
-		    		 p = iterador.next();
-		    	 } catch (NoSuchElementException e) {
-		    		 System.out.println("No hay más atracciones para mostrar");
-		    	 }
-		     }
-		 }
+		while (iterador.hasNext()) {
+			Producto p = iterador.next();
+			if (usuario.getPresupuesto() >= p.getCosto() && usuario.getTiempoDisponible() >= p.getTiempo()
+					&& p.hayCupo() && !usuario.getItinerario().contains((CharSequence) p.getNombre())) {
+				System.out.println(p);
+				if (this.ofrecer()) {
+					usuario.agregarAItinerario(p);
+					usuario.setPresupuesto(usuario.getPresupuesto() - p.getCosto());
+					usuario.setTiempoDisponible(usuario.getTiempoDisponible() - p.getTiempo());
+					p.ocuparCupo();
+				}
+			} else {
+				try {
+					p = iterador.next();
+				} catch (NoSuchElementException e) {
+					System.out.println("No hay más atracciones para mostrar");
+				}
+			}
+		}
 	}
-	
+
 	public void mostrarATodos() throws IOException {
 		List<Usuario> aux = new LinkedList<Usuario>();
 		Iterator<Usuario> iterador = this.usuarios.iterator();
-		while (iterador.hasNext()){
-		     Usuario u = iterador.next();
-		     System.out.println(u);
-		     this.mostrar(u);
-		     aux.add(u);
-	         iterador.remove();
-		 }
+		while (iterador.hasNext()) {
+			Usuario u = iterador.next();
+			System.out.println(u);
+			this.mostrar(u);
+			aux.add(u);
+			iterador.remove();
+		}
 		for (Usuario u : aux) {
-			System.out.println("Itinerario de " + u.getNombre() + ": "+ u.getItinerario());
+			System.out.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
 		}
 		imprimirItinerarios(aux, "src/archivosDeSalida/itinerarios.csv");
 	}
-	
-	public void imprimirItinerarios(List<Usuario> usuarios, String file) throws IOException {	
+
+	public void imprimirItinerarios(List<Usuario> usuarios, String file) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(file));
-		
+
 		for (Usuario u : usuarios) {
-			salida.println("Itinerario de " + u.getNombre() + ": "+ u.getItinerario());
+			salida.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
 		}
 		salida.close();
 	}
-	
-	/*public void mostrar(Usuario usuario) {
-		this.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
-		Iterator<Producto> iterador = this.productos.iterator();
-		while (iterador.hasNext()){
-		     Producto p = iterador.next();
-		     System.out.println(p);
-		     if (this.ofrecer()){
-		    	 usuario.agregarAItinerario(p);
-		     }
-		 }*/
-	
+
 }

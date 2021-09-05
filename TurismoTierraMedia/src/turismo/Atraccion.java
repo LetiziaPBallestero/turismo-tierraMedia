@@ -16,6 +16,7 @@ public class Atraccion extends Producto {
 		return tipoDeAtraccion;
 	}
 
+	@Override
 	public String getNombre() {
 		return nombre;
 	}

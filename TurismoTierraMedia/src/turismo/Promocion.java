@@ -21,6 +21,15 @@ public abstract class Promocion extends Producto {
 	}
 	
 	@Override
+	public String getNombre() {
+		String nombres = "";
+		for (Atraccion a : this.atracciones) {
+			nombres += a.getNombre() + "/ ";
+		}
+		return nombres;
+	}
+	
+	@Override
 	public double getTiempo() {
 		return this.tiempo;
 	}
