@@ -50,7 +50,7 @@ public class LectorAtraccion {
 	private Atraccion crearAtraccion(String linea) throws AtraccionException {
 		String lin[] = linea.split(",");
 		if(lin.length!=5) {
-			throw new AtraccionException("Cantidad de parámetros errónea");
+			throw new AtraccionException("Cantidad de parametros erronea");
 		}
 		return new Atraccion(lin[0], TipoDeAtraccion.valueOf(lin[1]),
 				Integer.parseInt(lin[2]), Double.parseDouble(lin[3]), Integer.parseInt(lin[4]));

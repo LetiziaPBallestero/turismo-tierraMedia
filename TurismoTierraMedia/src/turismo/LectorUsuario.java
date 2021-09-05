@@ -50,7 +50,7 @@ public class LectorUsuario {
 	private Usuario crearUsuario(String linea) throws UsuarioException {
 		String lin[] = linea.split(",");
 		if(lin.length!=4) {
-			throw new UsuarioException("Cantidad de parámetros errónea");
+			throw new UsuarioException("Cantidad de parametros erronea");
 		}
 		return new Usuario(TipoDeAtraccion.valueOf(lin[0]), lin[1],
 				Integer.parseInt(lin[2]), Double.parseDouble(lin[3]));
