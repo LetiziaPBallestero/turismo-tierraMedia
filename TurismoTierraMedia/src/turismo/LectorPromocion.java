@@ -20,7 +20,6 @@ public class LectorPromocion {
 			String linea = br.readLine();
 			while ((linea != null)) {
 				try {
-					// System.out.println(linea);
 					promociones.add(this.crearPromocion(linea, atracciones));
 				} catch (PromocionException e) {
 					System.out.println(e.getMessage());

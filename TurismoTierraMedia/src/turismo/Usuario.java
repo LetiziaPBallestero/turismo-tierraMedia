@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class Usuario {
 	private TipoDeAtraccion tipoDeAtraccionPreferido;
 	private String nombre;
-	private int presupuesto;
+	private double presupuesto;
 	private double tiempoDisponible;
 	private LinkedList<Producto> itinerario = new LinkedList<Producto>();
 
@@ -21,12 +21,20 @@ public class Usuario {
 		return tipoDeAtraccionPreferido;
 	}
 
-	public int getPresupuesto() {
+	public double getPresupuesto() {
 		return presupuesto;
+	}
+
+	public void setPresupuesto(double presupuesto) {
+		this.presupuesto = presupuesto;
 	}
 
 	public double getTiempoDisponible() {
 		return tiempoDisponible;
+	}
+
+	public void setTiempoDisponible(double tiempoDisponible) {
+		this.tiempoDisponible = tiempoDisponible;
 	}
 
 	public LinkedList<Producto> getItinerario() {

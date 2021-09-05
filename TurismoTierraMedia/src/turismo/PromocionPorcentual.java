@@ -14,8 +14,7 @@ public class PromocionPorcentual extends Promocion {
 	@Override 
 	protected void aplicarPromocion () {
 		for (Atraccion atraccion : this.atracciones) {
-			this.costo += atraccion.getCosto();
-			this.tiempo += atraccion.getTiempo();			
+			this.costo += atraccion.getCosto();		
 		}
 		this.costo = costo * this.descuento / 100;
 	}	

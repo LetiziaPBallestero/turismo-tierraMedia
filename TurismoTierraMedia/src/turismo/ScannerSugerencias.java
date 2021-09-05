@@ -3,6 +3,7 @@ package turismo;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ScannerSugerencias {
@@ -41,22 +42,27 @@ public class ScannerSugerencias {
 	
 	
 	public void mostrar(Usuario usuario) {
+		ScannerSugerencias.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
 		Iterator<Producto> iterador = this.productos.iterator();
 		while (iterador.hasNext()){
 		     Producto p = iterador.next();
+		     if(usuario.getPresupuesto() >= p.getCosto() && usuario.getTiempoDisponible() >= p.getTiempo() && p.hayCupo()) {
 		     System.out.println(p);
 		     if (this.ofrecer()){
 		    	 usuario.agregarAItinerario(p);
+		    	 usuario.setPresupuesto(usuario.getPresupuesto() - p.getCosto());
+		    	 usuario.setTiempoDisponible(usuario.getTiempoDisponible() - p.getTiempo());
+		    	 p.ocuparCupo();
+		     }
+		     }
+		     else {
+		    	 try {
+		    		 p = iterador.next();
+		    	 } catch (NoSuchElementException e) {
+		    		 System.out.println("No hay más atracciones para mostrar");
+		    	 }
 		     }
 		 }
-		
-		/*for (Producto p : ScannerSugerencias.productos) {
-			System.out.println(p);
-			if(this.ofrecer()) {
-				usuario.agregarAItinerario(p);
-			}
-			ScannerSugerencias.productos.remove(p);
-		}*/
 	}
 	
 	public void mostrarATodos() {
@@ -72,12 +78,17 @@ public class ScannerSugerencias {
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": "+ u.getItinerario());
 		}
-		
-		/*for (Usuario u : ScannerSugerencias.usuarios) {
-			System.out.println(u);
-			this.mostrar(u);
-			ScannerSugerencias.usuarios.remove(u);
-		}*/
 	}
+	
+	/*public void mostrar(Usuario usuario) {
+		this.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
+		Iterator<Producto> iterador = this.productos.iterator();
+		while (iterador.hasNext()){
+		     Producto p = iterador.next();
+		     System.out.println(p);
+		     if (this.ofrecer()){
+		    	 usuario.agregarAItinerario(p);
+		     }
+		 }*/
 	
 }

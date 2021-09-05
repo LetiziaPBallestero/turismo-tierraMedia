@@ -3,7 +3,6 @@ package turismo;
 public class Atraccion extends Producto {
 	private String nombre;
 	private int cupoMaximo;
-	private int cuposOcupados;
 
 	public Atraccion(String nombre, TipoDeAtraccion tipo, double costo, double tiempo, int cupo) {
 		super(tipo);
@@ -21,8 +20,14 @@ public class Atraccion extends Producto {
 		return nombre;
 	}
 
+	@Override
 	public boolean hayCupo() {
 		return this.cuposOcupados < this.cupoMaximo;
+	}
+	
+	@Override
+	public void ocuparCupo() {
+		this.cuposOcupados += 1;
 	}
 
 	@Override

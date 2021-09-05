@@ -19,12 +19,5 @@ public class PromocionAxB extends Promocion {
 			this.costo += atraccion.getCosto();
 		}
 	}
-	
-	@Override
-	public double getTiempo() {
-		for (Atraccion atraccion : this.atracciones) {
-			this.tiempo += atraccion.getTiempo();
-		}
-		return this.tiempo;
-	}
+
 }
