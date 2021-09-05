@@ -5,5 +5,9 @@ public abstract class Producto {
 	public Producto(TipoDeAtraccion tipoDeAtraccion) {
 		this.tipoDeAtraccion = tipoDeAtraccion;
 	}
+	
+	public boolean esPromo() {
+		return false;
+	}
 
 }

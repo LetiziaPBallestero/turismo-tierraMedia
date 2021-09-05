@@ -24,6 +24,11 @@ public abstract class Promocion extends Producto {
 	protected double getCosto() {
 		return this.costo;
 	}
+	
+	@Override
+	public boolean esPromo() {
+		return true;
+	}
 
 	@Override
 	public String toString() {
