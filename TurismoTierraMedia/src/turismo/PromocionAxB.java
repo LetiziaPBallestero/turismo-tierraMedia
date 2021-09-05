@@ -9,25 +9,15 @@ public class PromocionAxB extends Promocion {
 		super(tipoPromocion, tipoDeAtraccion, atracciones);
 		// TODO Auto-generated constructor stub
 	}
-	
-/*
-	public PromocionAXB (TipoDeAtraccion tipo, TipoDePromocion promocion, int cantidad, double costo, List <Atraccion> atracciones) {
-		super (tipo, promocion, cantidad, atracciones); 
-		if (this.tipoPromocion == TipoDePromocion.AXB ) {
-			this.costo = this.aplicarPromocion();
-		}
-	}
-	*/
-
-	/*
+/*	
 	@Override 
 	protected double aplicarPromocion () {
-		double costoTotal = 0; 
-		double tiempoTotal = 0; 
-		List <String> nuevasAtracciones = new ArrayList <String> (); 
+		double costoTotal; 
+		double tiempoTotal; 
+		List <String> atraccionesPagas = new ArrayList <String> (); 
 		
 		for (Atraccion atraccion : this.atracciones) {
-			nuevasAtracciones.add (atracciones.getNombre());
+			atraccionesPagas.add(atracciones);
 			if (atraccion.tipo == this.tipo && !nuevasAtracciones.contains(atraccion.getNombre())) {
 				for (int i = 1 ; i < this.cantidadDeAtracciones; i++) {
 					costoTotal += atraccion.costo;

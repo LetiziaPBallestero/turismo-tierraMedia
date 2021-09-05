@@ -6,6 +6,7 @@ public abstract class Promocion extends Producto {
 	protected TipoDePromocion tipoPromocion;
 	protected List <Atraccion> atracciones; 
 	protected double costo; 
+	protected double tiempo; 
 	
 	public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List <Atraccion> atracciones) {
 		super(tipoDeAtraccion);
@@ -15,6 +16,10 @@ public abstract class Promocion extends Producto {
 	
 	protected double aplicarPromocion () {
 		return this.costo;
+	}
+	
+	protected double getTiempo() {
+		return this.tiempo;
 	}
 
 	@Override
