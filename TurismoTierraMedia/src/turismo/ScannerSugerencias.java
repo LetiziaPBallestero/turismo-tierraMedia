@@ -1,5 +1,8 @@
 package turismo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,7 +68,7 @@ public class ScannerSugerencias {
 		 }
 	}
 	
-	public void mostrarATodos() {
+	public void mostrarATodos() throws IOException {
 		List<Usuario> aux = new LinkedList<Usuario>();
 		Iterator<Usuario> iterador = this.usuarios.iterator();
 		while (iterador.hasNext()){
@@ -78,6 +81,16 @@ public class ScannerSugerencias {
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": "+ u.getItinerario());
 		}
+		imprimirItinerarios(aux, "src/archivosDeSalida/itinerarios.csv");
+	}
+	
+	public void imprimirItinerarios(List<Usuario> usuarios, String file) throws IOException {	
+		PrintWriter salida = new PrintWriter(new FileWriter(file));
+		
+		for (Usuario u : usuarios) {
+			salida.println("Itinerario de " + u.getNombre() + ": "+ u.getItinerario());
+		}
+		salida.close();
 	}
 	
 	/*public void mostrar(Usuario usuario) {
