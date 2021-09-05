@@ -80,7 +80,7 @@ public class ScannerSugerencias {
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
 		}
-		imprimirItinerarios(aux, "src/archivosDeSalida/itinerarios.csv");
+		imprimirItinerarios(aux, "src/archivosDeSalida/itinerarios.txt");
 	}
 
 	public void imprimirItinerarios(List<Usuario> usuarios, String file) throws IOException {
