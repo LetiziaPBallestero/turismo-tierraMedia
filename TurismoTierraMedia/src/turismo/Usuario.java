@@ -9,7 +9,7 @@ public class Usuario {
 	private double tiempoDisponible;
 	private LinkedList<Producto> itinerario = new LinkedList<Producto>();
 
-	public Usuario(TipoDeAtraccion tipoDeAtraccionPreferido, String nombre, int presupuesto, double tiempoDisponible) {
+	public Usuario(TipoDeAtraccion tipoDeAtraccionPreferido, String nombre, double presupuesto, double tiempoDisponible) {
 		super();
 		this.tipoDeAtraccionPreferido = tipoDeAtraccionPreferido;
 		this.nombre = nombre;
