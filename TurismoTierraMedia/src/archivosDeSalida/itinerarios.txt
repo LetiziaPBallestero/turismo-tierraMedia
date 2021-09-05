@@ -1,4 +1,4 @@
 Itinerario de Eowyn: Costo total = 10.0, Tiempo total = 2.0, Atracciones = Moria/ 
-Itinerario de Gandalf: Costo total = 13.0, Tiempo total = 5.0, Atracciones = Abismo de Helm/ Erebor/ 
+Itinerario de Gandalf: Costo total = 12.0, Tiempo total = 3.0, Atracciones = Erebor/ 
 Itinerario de Sam: Costo total = 36.0, Tiempo total = 7.5, Atracciones = Lothlorien/ La Comarca/ 
 Itinerario de Galadriel: Costo total = 13.0, Tiempo total = 5.0, Atracciones = Abismo de Helm/ Erebor/ 
