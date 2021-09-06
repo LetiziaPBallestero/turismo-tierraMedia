@@ -79,16 +79,13 @@ public class ScannerSugerencias {
 		}
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
+			imprimirItinerarios(u, "src/archivosDeSalida/" + u.getNombre() +".txt");
 		}
-		imprimirItinerarios(aux, "src/archivosDeSalida/itinerarios.txt");
 	}
 
-	public void imprimirItinerarios(List<Usuario> usuarios, String file) throws IOException {
+	public void imprimirItinerarios(Usuario usuario, String file) throws IOException {
 		PrintWriter salida = new PrintWriter(new FileWriter(file));
-
-		for (Usuario u : usuarios) {
-			salida.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
-		}
+		salida.println("Itinerario de " + usuario.getNombre() + ": " + usuario.getItinerario());
 		salida.close();
 	}
 

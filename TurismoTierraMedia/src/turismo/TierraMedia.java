@@ -9,5 +9,4 @@ public class TierraMedia {
 		sc.escanearUsuariosYProductos();
 		sc.mostrarATodos();
 	}
-
 }
