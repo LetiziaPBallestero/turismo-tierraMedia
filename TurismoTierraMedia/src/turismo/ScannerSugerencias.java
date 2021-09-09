@@ -12,20 +12,31 @@ import java.util.Scanner;
 public class ScannerSugerencias {
 	private static List<Usuario> usuarios;
 	private static List<Producto> productos = new LinkedList<Producto>();
+	private String archivoUsuarios;
+	private String archivoAtracciones;
+	private String archivoPromociones;
+	
+
+	public ScannerSugerencias(String archivoUsuarios, String archivoAtracciones, String archivoPromociones) {
+		super();
+		this.archivoUsuarios = archivoUsuarios;
+		this.archivoAtracciones = archivoAtracciones;
+		this.archivoPromociones = archivoPromociones;
+	}
 
 	public void escanearUsuariosYProductos() throws UsuarioException, PromocionException, AtraccionException {
 		List<Atraccion> atracciones = new LinkedList<Atraccion>();
 		List<Promocion> promociones = new LinkedList<Promocion>();
 
 		LectorUsuario lectorUsuario = new LectorUsuario();
-		ScannerSugerencias.usuarios = lectorUsuario.leerUsuario("src/archivosDeEntrada/usuarios.csv");
+		ScannerSugerencias.usuarios = lectorUsuario.leerUsuario(this.archivoUsuarios);
 
 		LectorAtraccion lectorAtraccion = new LectorAtraccion();
-		atracciones = lectorAtraccion.leerAtraccion("src/archivosDeEntrada/atracciones.csv");
+		atracciones = lectorAtraccion.leerAtraccion(this.archivoAtracciones);
 		productos.addAll(atracciones);
 
 		LectorPromocion lectorPromocion = new LectorPromocion();
-		promociones = lectorPromocion.leerPromocion("src/archivosDeEntrada/promociones.csv", atracciones);
+		promociones = lectorPromocion.leerPromocion(this.archivoPromociones, atracciones);
 		productos.addAll(promociones);
 
 	}
@@ -45,7 +56,7 @@ public class ScannerSugerencias {
 
 	public void mostrar(Usuario usuario) {
 		ScannerSugerencias.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
-		Iterator<Producto> iterador = this.productos.iterator();
+		Iterator<Producto> iterador = ScannerSugerencias.productos.iterator();
 		while (iterador.hasNext()) {
 			Producto p = iterador.next();
 			if (usuario.getPresupuesto() >= p.getCosto() && usuario.getTiempoDisponible() >= p.getTiempo()
@@ -69,7 +80,7 @@ public class ScannerSugerencias {
 
 	public void mostrarATodos() throws IOException {
 		List<Usuario> aux = new LinkedList<Usuario>();
-		Iterator<Usuario> iterador = this.usuarios.iterator();
+		Iterator<Usuario> iterador = ScannerSugerencias.usuarios.iterator();
 		while (iterador.hasNext()) {
 			Usuario u = iterador.next();
 			System.out.println(u);
