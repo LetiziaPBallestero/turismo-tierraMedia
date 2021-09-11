@@ -1,1 +1,1 @@
-Itinerario de Gandalf: Costo total = 13.0, Tiempo total = 5.0, Atracciones = Abismo de Helm/ Erebor/ 
+Itinerario de Gandalf: Costo total = 0.0, Tiempo total = 0.0, Atracciones = 
