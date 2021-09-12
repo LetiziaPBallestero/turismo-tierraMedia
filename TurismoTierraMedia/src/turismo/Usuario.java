@@ -36,10 +36,6 @@ public class Usuario {
 	public void setTiempoDisponible(double tiempoDisponible) {
 		this.tiempoDisponible = tiempoDisponible;
 	}
-
-	//public LinkedList<Producto> getItinerario() {
-		//return itinerario;
-	//}
 	
 	public String getItinerario() {
 		double costoTotal = 0;

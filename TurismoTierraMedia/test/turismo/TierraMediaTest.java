@@ -37,7 +37,7 @@ public class TierraMediaTest {
 
 	}
 
-	@Test()
+	@Test
 	public void PromocionesTest() {
 		List<Atraccion> atracciones = new ArrayList<Atraccion>();
 		atracciones.add(new Atraccion("Moria", TipoDeAtraccion.AVENTURA, 10, 2, 6));
@@ -58,8 +58,20 @@ public class TierraMediaTest {
 
 		assertEquals("Moria/ Mordor/ Bosque Negro/ ",axb.getNombre());
 		}
-
-
-
-
+	
+	@Test
+	public void itinerariosTest() {
+		Atraccion moria = new Atraccion("Moria", TipoDeAtraccion.AVENTURA, 10, 2, 6);
+		Atraccion minasTirith = new Atraccion("Minas Tirith", TipoDeAtraccion.PAISAJE, 5, 2.5, 25);
+		Usuario eowyn = new Usuario(TipoDeAtraccion.AVENTURA, "Eowyn", 10, 8);
+		Usuario gandalf = new Usuario(TipoDeAtraccion.PAISAJE, "Gandalf", 100, 5);
+		
+		eowyn.agregarAItinerario(moria);
+		gandalf.agregarAItinerario(minasTirith);
+		
+		assertEquals("Costo total = 10.0, Tiempo total = 2.0, Atracciones = Moria/ ", eowyn.getItinerario());
+		assertEquals("Costo total = 5.0, Tiempo total = 2.5, Atracciones = Minas Tirith/ ", gandalf.getItinerario());
+		
+	}
+	
 }
