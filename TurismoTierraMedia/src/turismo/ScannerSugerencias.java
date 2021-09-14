@@ -15,7 +15,6 @@ public class ScannerSugerencias {
 	private String archivoUsuarios;
 	private String archivoAtracciones;
 	private String archivoPromociones;
-	
 
 	public ScannerSugerencias(String archivoUsuarios, String archivoAtracciones, String archivoPromociones) {
 		super();
@@ -45,10 +44,10 @@ public class ScannerSugerencias {
 
 		String opcion = "";
 		Scanner sc = new Scanner(System.in);
-		System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
+		System.out.println("ï¿½Desea aï¿½adir esta sugerencia a su itinerario? Si/No");
 		opcion = sc.next();
 		while (!opcion.toLowerCase().equals("si") && !opcion.toLowerCase().equals("no")) {
-			System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
+			System.out.println("ï¿½Desea aï¿½adir esta sugerencia a su itinerario? Si/No");
 			opcion = sc.next();
 		}
 		return opcion.toLowerCase().equals("si");
@@ -72,7 +71,7 @@ public class ScannerSugerencias {
 				try {
 					p = iterador.next();
 				} catch (NoSuchElementException e) {
-					System.out.println("No hay más atracciones para mostrar");
+					System.out.println("No hay mï¿½s atracciones para mostrar");
 				}
 			}
 		}
@@ -90,7 +89,7 @@ public class ScannerSugerencias {
 		}
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
-			imprimirItinerarios(u, "src/archivosDeSalida/" + u.getNombre() +".txt");
+			imprimirItinerarios(u, "src/archivosDeSalida/" + u.getNombre() + ".txt");
 		}
 	}
 

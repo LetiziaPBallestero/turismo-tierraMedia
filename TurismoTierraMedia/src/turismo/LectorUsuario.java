@@ -17,8 +17,12 @@ public class LectorUsuario {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
-			fr = new FileReader(file);
-			br = new BufferedReader(fr);
+			if(file.length()!=0) {
+				fr = new FileReader(file);
+				br = new BufferedReader(fr);
+			}else	throw new UsuarioException("Ruta Usuarios Vacia");
+				
+	
 			// Lectura del fichero
 			String linea = br.readLine();
 			while ((linea != null)) {
