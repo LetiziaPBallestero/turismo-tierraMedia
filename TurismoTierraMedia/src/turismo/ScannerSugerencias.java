@@ -44,10 +44,10 @@ public class ScannerSugerencias {
 
 		String opcion = "";
 		Scanner sc = new Scanner(System.in);
-		System.out.println("ï¿½Desea aï¿½adir esta sugerencia a su itinerario? Si/No");
+		System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
 		opcion = sc.next();
 		while (!opcion.toLowerCase().equals("si") && !opcion.toLowerCase().equals("no")) {
-			System.out.println("ï¿½Desea aï¿½adir esta sugerencia a su itinerario? Si/No");
+			System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
 			opcion = sc.next();
 		}
 		return opcion.toLowerCase().equals("si");
