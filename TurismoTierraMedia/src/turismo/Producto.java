@@ -8,6 +8,7 @@ public abstract class Producto {
 	protected int cuposOcupados;
 	protected TipoDeAtraccion tipoDeAtraccion;
 	protected List <Atraccion> atracciones; 
+	
 	public Producto(TipoDeAtraccion tipoDeAtraccion) {
 		this.tipoDeAtraccion = tipoDeAtraccion;
 	}
