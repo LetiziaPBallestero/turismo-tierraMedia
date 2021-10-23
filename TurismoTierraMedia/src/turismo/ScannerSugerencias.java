@@ -43,6 +43,7 @@ public class ScannerSugerencias {
 	public boolean ofrecer() {
 
 		String opcion = "";
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
 		opcion = sc.next();
@@ -71,7 +72,7 @@ public class ScannerSugerencias {
 				try {
 					p = iterador.next();
 				} catch (NoSuchElementException e) {
-					System.out.println("No hay mï¿½s atracciones para mostrar");
+					System.out.println("No hay más atracciones para mostrar");
 				}
 			}
 		}
