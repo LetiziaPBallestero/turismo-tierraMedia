@@ -19,7 +19,6 @@ public abstract class Producto {
 	
 	public abstract boolean hayCupo();
 	
-
 	public double getCosto() {
 		return costo;
 	}

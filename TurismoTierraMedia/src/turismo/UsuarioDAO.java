@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class UsuarioDAO {
 	public List<Usuario> getAll() throws SQLException, ParseException {
 		List<Usuario> usuarios = new LinkedList<Usuario>();
@@ -22,5 +23,15 @@ public class UsuarioDAO {
 		}
 		return usuarios;
 		}
+	
+	public void update(Usuario usuario) throws SQLException{
+		String sql = "UPDATE usuarios SET presupuesto = ?, tiempo_disponible = ? WHERE nombre = '?'";
+		Connection conexion = Conexion.obtenerConexion();
+		PreparedStatement statement = conexion.prepareStatement(sql);
+		statement.setDouble(1, usuario.getPresupuesto());
+		statement.setDouble(2, usuario.getTiempoDisponible());
+		statement.setString(3, usuario.getNombre());
+		statement.executeUpdate();
+	}
 
 }

@@ -15,6 +15,10 @@ public class Atraccion extends Producto {
 	public TipoDeAtraccion getTipo() {
 		return tipoDeAtraccion;
 	}
+	
+	public int getCuposOcupados() {
+		return cuposOcupados;
+	}
 
 	@Override
 	public String getNombre() {
@@ -43,3 +47,4 @@ public class Atraccion extends Producto {
 	}
 
 }
+

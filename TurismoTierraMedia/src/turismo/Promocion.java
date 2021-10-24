@@ -29,6 +29,11 @@ public abstract class Promocion extends Producto {
 		return nombres;
 	}
 	
+	
+	public List<Atraccion> getAtracciones() {
+		return atracciones;
+	}
+
 	@Override
 	public double getTiempo() {
 		return this.tiempo;
