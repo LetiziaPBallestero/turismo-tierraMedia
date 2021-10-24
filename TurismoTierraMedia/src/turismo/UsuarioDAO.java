@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class UsuarioDAO {
 	public List<Usuario> getAll() throws SQLException, ParseException {
 		List<Usuario> usuarios = new LinkedList<Usuario>();
