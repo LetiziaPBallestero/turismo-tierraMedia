@@ -4,6 +4,14 @@ import java.util.List;
 
 public class PromocionAxB extends Promocion {
 
+	public PromocionAxB(int idPromo, TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion) {
+		super(idPromo, tipoPromocion, tipoDeAtraccion);
+	}
+	
+	public PromocionAxB(TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion) {
+		super(tipoPromocion, tipoDeAtraccion);
+	}
+	
 	public PromocionAxB(TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List<Atraccion> atracciones) {
 		super(tipoPromocion, tipoDeAtraccion, atracciones);
 		this.aplicarPromocion();

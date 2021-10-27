@@ -47,11 +47,14 @@ public class TierraMediaTest {
 		atracciones.add(new Atraccion("Mordor", TipoDeAtraccion.AVENTURA, 24, 3, 4));
 		atracciones.add(new Atraccion("Bosque Negro", TipoDeAtraccion.AVENTURA, 3, 4, 12));
 
-		PromocionAxB axb = new PromocionAxB(TipoDePromocion.AXB, TipoDeAtraccion.AVENTURA, atracciones);
-		PromocionAbsoluta abs = new PromocionAbsoluta(TipoDePromocion.ABSOLUTA, TipoDeAtraccion.AVENTURA, 25,
-				atracciones);
-		PromocionPorcentual por = new PromocionPorcentual(TipoDePromocion.ABSOLUTA, TipoDeAtraccion.AVENTURA, 50,
-				atracciones);
+		PromocionAxB axb = new PromocionAxB(TipoDePromocion.AXB, TipoDeAtraccion.AVENTURA);
+		axb.setAtracciones(atracciones);
+		axb.aplicarPromocion();
+		PromocionAbsoluta abs = new PromocionAbsoluta(TipoDePromocion.ABSOLUTA, TipoDeAtraccion.AVENTURA, 25);
+		abs.setAtracciones(atracciones);
+		PromocionPorcentual por = new PromocionPorcentual(TipoDePromocion.ABSOLUTA, TipoDeAtraccion.AVENTURA, 50);
+		por.setAtracciones(atracciones);
+		por.aplicarPromocion();
 		assertEquals(34, axb.getCosto(), 0);// costo correcto de promo
 		assertEquals(25, abs.getCosto(), 0);// costo correcto de promo
 		assertEquals(18.5, por.getCosto(), 0);// costo correcto de promo
@@ -102,7 +105,8 @@ public class TierraMediaTest {
 		String NombresEsperados[] = { "Moria/ Mordor/ Bosque Negro/ ", "Moria", "Mordor", "Bosque Negro",
 				"Minas Tirith", "La Comarca" };
 
-		PromocionAxB axb = new PromocionAxB(TipoDePromocion.AXB, TipoDeAtraccion.AVENTURA, atracciones);
+		PromocionAxB axb = new PromocionAxB(TipoDePromocion.AXB, TipoDeAtraccion.AVENTURA);
+		axb.setAtracciones(atracciones);
 		List<Producto> productos = new LinkedList<Producto>();
 
 		productos.add(moria);

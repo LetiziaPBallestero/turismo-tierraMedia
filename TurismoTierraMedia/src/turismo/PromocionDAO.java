@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class PromocionDAO implements ProductoDAO<Promocion> {
     AtraccionDAO atraccionDAO = new AtraccionDAO();
@@ -38,7 +40,7 @@ public class PromocionDAO implements ProductoDAO<Promocion> {
 		return promociones;
 	}*/
 	
-	public List<Promocion> getAll() throws SQLException, ParseException, PromocionException, AtraccionException
+    /*public List<Promocion> getAll() throws SQLException, ParseException, PromocionException, AtraccionException
     {
         List<Promocion> promociones = new LinkedList<Promocion>();
         List<Atraccion> atracciones = atraccionDAO.getAll();
@@ -84,7 +86,41 @@ public class PromocionDAO implements ProductoDAO<Promocion> {
             promociones.add(promocion);
         }
         return promociones;
-    }
+    }*/
+    
+    public List<Promocion> getAll(List<Atraccion> atracciones) throws SQLException, ParseException, PromocionException, AtraccionException {
+		List<Promocion> promociones = new LinkedList<Promocion>();
+		Map<Promocion, List<Atraccion>> mapa = new HashMap<Promocion, List<Atraccion>>();
+		String sql = "SELECT promociones.id, promociones.tipo_de_promocion, promociones.tipo_de_atracciones, promociones.numero_asociado, atracciones.nombre, atracciones.costo, atracciones.tiempo, atracciones.cupo\r\n"
+				+ "FROM promociones\r\n"
+				+ "JOIN atracciones_de_promociones ON atracciones_de_promociones.id_promocion = promociones.id\r\n"
+				+ "JOIN atracciones ON atracciones_de_promociones.id_atraccion = atracciones.id";
+		Connection conexion = Conexion.obtenerConexion();
+		PreparedStatement statement = conexion.prepareStatement(sql);
+		ResultSet resultados = statement.executeQuery();
+		while (resultados.next()) {
+			Promocion promocion = crearPromocion(resultados.getInt("id"), resultados.getString("tipo_de_promocion"),
+					resultados.getString("tipo_de_atracciones"), resultados.getInt("numero_asociado"));
+			if(mapa.containsKey(promocion)) {
+				List<Atraccion> atraccionesPromo = mapa.get(promocion);
+				agregarAtraccionAPromo(resultados.getString("nombre"), atraccionesPromo, atracciones);
+				mapa.put(promocion, atraccionesPromo);
+			} else {
+				List<Atraccion> atraccionesPromo = new LinkedList<Atraccion>();
+				agregarAtraccionAPromo(resultados.getString("nombre"), atraccionesPromo, atracciones);
+				mapa.put(promocion, atraccionesPromo);
+			}
+		}
+		for (Map.Entry<Promocion, List<Atraccion>> entry : mapa.entrySet()) {
+			entry.getKey().setAtracciones(entry.getValue());
+			promociones.add(entry.getKey());
+		}
+		for (Promocion p : promociones) {
+			p.aplicarPromocion();
+		}
+		return promociones;
+	}
+    
 
 	private void agregarAtraccionAPromo(String nombre, List<Atraccion> atraccionesPromo, List<Atraccion> atracciones) {
 		for (Atraccion a : atracciones) {
@@ -94,22 +130,18 @@ public class PromocionDAO implements ProductoDAO<Promocion> {
 		}
 	}
 
-	private Promocion crearPromocion(String tipoPromo, String tipoAtraccion, int numeroAsociado,
-			List<Atraccion> atraccionesPromo) throws PromocionException, AtraccionException {
+	private Promocion crearPromocion(int idPromo, String tipoPromo, String tipoAtraccion, int numeroAsociado) throws PromocionException, AtraccionException {
 		Promocion promo = null;
 
 		if (tipoPromo.toLowerCase().equals("axb")) {
-			promo = new PromocionAxB(TipoDePromocion.valueOf(tipoPromo), TipoDeAtraccion.valueOf(tipoAtraccion),
-					atraccionesPromo);
+			promo = new PromocionAxB(idPromo, TipoDePromocion.valueOf(tipoPromo), TipoDeAtraccion.valueOf(tipoAtraccion));
 		}
 
 		if (tipoPromo.toLowerCase().equals("absoluta")) {
-			promo = new PromocionAbsoluta(TipoDePromocion.valueOf(tipoPromo), TipoDeAtraccion.valueOf(tipoAtraccion),
-					numeroAsociado, atraccionesPromo);
+			promo = new PromocionAbsoluta(idPromo, TipoDePromocion.valueOf(tipoPromo), TipoDeAtraccion.valueOf(tipoAtraccion), numeroAsociado);
 		}
 		if (tipoPromo.toLowerCase().equals("porcentual")) {
-			promo = new PromocionPorcentual(TipoDePromocion.valueOf(tipoPromo), TipoDeAtraccion.valueOf(tipoAtraccion),
-					numeroAsociado, atraccionesPromo);
+			promo = new PromocionPorcentual(idPromo, TipoDePromocion.valueOf(tipoPromo), TipoDeAtraccion.valueOf(tipoAtraccion), numeroAsociado);
 		}
 		return promo;
 	}

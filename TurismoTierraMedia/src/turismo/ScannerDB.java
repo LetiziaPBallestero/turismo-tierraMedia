@@ -3,21 +3,24 @@ package turismo;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class ScannerSugerencias {
+public class ScannerDB {
 	private static List<Usuario> usuarios;
 	private static List<Producto> productos = new LinkedList<Producto>();
+	private UsuarioDAO usuarioDAO = new UsuarioDAO();
+	private AtraccionDAO atraccionDAO = new AtraccionDAO();
+	private PromocionDAO promocionDAO = new PromocionDAO();
 	private String archivoUsuarios;
 	private String archivoAtracciones;
 	private String archivoPromociones;
-	
 
-	public ScannerSugerencias(String archivoUsuarios, String archivoAtracciones, String archivoPromociones) {
+	public ScannerDB(String archivoUsuarios, String archivoAtracciones, String archivoPromociones) {
 		super();
 		this.archivoUsuarios = archivoUsuarios;
 		this.archivoAtracciones = archivoAtracciones;
@@ -29,7 +32,7 @@ public class ScannerSugerencias {
 		List<Promocion> promociones = new LinkedList<Promocion>();
 
 		LectorUsuario lectorUsuario = new LectorUsuario();
-		ScannerSugerencias.usuarios = lectorUsuario.leerUsuario(this.archivoUsuarios);
+		ScannerDB.usuarios = lectorUsuario.leerUsuario(this.archivoUsuarios);
 
 		LectorAtraccion lectorAtraccion = new LectorAtraccion();
 		atracciones = lectorAtraccion.leerAtraccion(this.archivoAtracciones);
@@ -37,6 +40,9 @@ public class ScannerSugerencias {
 
 		LectorPromocion lectorPromocion = new LectorPromocion();
 		promociones = lectorPromocion.leerPromocion(this.archivoPromociones, atracciones);
+		for(Promocion p : promociones) {
+			p.aplicarPromocion();
+		}
 		productos.addAll(promociones);
 
 	}
@@ -44,6 +50,7 @@ public class ScannerSugerencias {
 	public boolean ofrecer() {
 
 		String opcion = "";
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("¿Desea añadir esta sugerencia a su itinerario? Si/No");
 		opcion = sc.next();
@@ -54,9 +61,9 @@ public class ScannerSugerencias {
 		return opcion.toLowerCase().equals("si");
 	}
 
-	public void mostrar(Usuario usuario) {
-		ScannerSugerencias.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
-		Iterator<Producto> iterador = ScannerSugerencias.productos.iterator();
+	public void mostrar(Usuario usuario) throws SQLException {
+		ScannerDB.productos.sort(new ProductoComparator(usuario.getTipoDeAtraccionPreferido()));
+		Iterator<Producto> iterador = ScannerDB.productos.iterator();
 		while (iterador.hasNext()) {
 			Producto p = iterador.next();
 			if (usuario.getPresupuesto() >= p.getCosto() && usuario.getTiempoDisponible() >= p.getTiempo()
@@ -67,6 +74,12 @@ public class ScannerSugerencias {
 					usuario.setPresupuesto(usuario.getPresupuesto() - p.getCosto());
 					usuario.setTiempoDisponible(usuario.getTiempoDisponible() - p.getTiempo());
 					p.ocuparCupo();
+					usuarioDAO.update(usuario);
+					if (p.esPromo())
+						promocionDAO.update(p);
+					else {
+						atraccionDAO.update(p);
+					}
 				}
 			} else {
 				try {
@@ -78,9 +91,9 @@ public class ScannerSugerencias {
 		}
 	}
 
-	public void mostrarATodos() throws IOException {
+	public void mostrarATodos() throws IOException, SQLException {
 		List<Usuario> aux = new LinkedList<Usuario>();
-		Iterator<Usuario> iterador = ScannerSugerencias.usuarios.iterator();
+		Iterator<Usuario> iterador = ScannerDB.usuarios.iterator();
 		while (iterador.hasNext()) {
 			Usuario u = iterador.next();
 			System.out.println(u);
@@ -90,7 +103,7 @@ public class ScannerSugerencias {
 		}
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
-			imprimirItinerarios(u, "src/archivosDeSalida/" + u.getNombre() +".txt");
+			imprimirItinerarios(u, "src/archivosDeSalida/" + u.getNombre() + ".txt");
 		}
 	}
 
