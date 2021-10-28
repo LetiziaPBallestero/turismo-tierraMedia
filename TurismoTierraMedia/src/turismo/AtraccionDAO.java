@@ -27,10 +27,10 @@ public class AtraccionDAO implements ProductoDAO<Atraccion> {
 	}
 	
 	public void update(Producto atraccion) throws SQLException{
-		String sql = "UPDATE atracciones SET cupo = ? WHERE nombre = '?'";
+		String sql = "UPDATE atracciones SET cupo = ? WHERE nombre = ?";
 		Connection conexion = Conexion.obtenerConexion();
 		PreparedStatement statement = conexion.prepareStatement(sql);
-		statement.setInt(1, ((Atraccion) atraccion).getCuposOcupados());
+		statement.setInt(1, ((Atraccion) atraccion).getCupo());
 		statement.setString(2, atraccion.getNombre());
 		statement.executeUpdate();
 	}

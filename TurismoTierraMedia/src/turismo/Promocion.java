@@ -5,49 +5,38 @@ import java.util.Objects;
 
 public abstract class Promocion extends Producto {
 	protected TipoDePromocion tipoPromocion;
-	protected List <Atraccion> atracciones; 
+	protected List<Atraccion> atracciones;
 	protected double tiempo;
 	protected int idPromo;
-	
-	/*public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List <Atraccion> atracciones) {
-		super(tipoDeAtraccion);
-		this.tipoPromocion = tipoPromocion;
-		this.atracciones = atracciones;
-		
-		for (Atraccion atraccion : this.atracciones) {
-			this.tiempo = this.tiempo + atraccion.getTiempo();
-		}
-	}*/
-	
-	public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion) {
+
+	public Promocion(TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion) {
 		super(tipoDeAtraccion);
 		this.tipoPromocion = tipoPromocion;
 	}
-	
-	public Promocion (int idPromo, TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion) {
+
+	public Promocion(int idPromo, TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion) {
 		super(tipoDeAtraccion);
 		this.tipoPromocion = tipoPromocion;
 		this.idPromo = idPromo;
 	}
-	
-	public Promocion (TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List <Atraccion> atracciones) {
+
+	public Promocion(TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, List<Atraccion> atracciones) {
 		super(tipoDeAtraccion);
 		this.tipoPromocion = tipoPromocion;
 		this.atracciones = atracciones;
-		
-		for (Atraccion atraccion : this.atracciones) {
-			this.tiempo = this.tiempo + atraccion.getTiempo();
-		}
-		}
-		
-	public void setAtracciones(List<Atraccion> atracciones) {
-		this.atracciones = atracciones;		
+
 		for (Atraccion atraccion : this.atracciones) {
 			this.tiempo = this.tiempo + atraccion.getTiempo();
 		}
 	}
-	
-		
+
+	public void setAtracciones(List<Atraccion> atracciones) {
+		this.atracciones = atracciones;
+		for (Atraccion atraccion : this.atracciones) {
+			this.tiempo = this.tiempo + atraccion.getTiempo();
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(idPromo);
@@ -69,9 +58,9 @@ public abstract class Promocion extends Producto {
 		return atracciones;
 	}
 
-	protected void aplicarPromocion () {
+	protected void aplicarPromocion() {
 	}
-	
+
 	@Override
 	public String getNombre() {
 		String nombres = "";
@@ -81,11 +70,15 @@ public abstract class Promocion extends Producto {
 		return nombres;
 	}
 
+	public int getIdPromo() {
+		return idPromo;
+	}
+
 	@Override
 	public double getTiempo() {
 		return this.tiempo;
 	}
-	
+
 	@Override
 	public boolean hayCupo() {
 		boolean cupo = true;
@@ -96,14 +89,14 @@ public abstract class Promocion extends Producto {
 		}
 		return cupo;
 	}
-	
+
 	@Override
 	public void ocuparCupo() {
-		for(Atraccion a : this.atracciones) {
+		for (Atraccion a : this.atracciones) {
 			a.ocuparCupo();
 		}
 	}
-	
+
 	@Override
 	public boolean esPromo() {
 		return true;
@@ -111,7 +104,8 @@ public abstract class Promocion extends Producto {
 
 	@Override
 	public String toString() {
-		return "P " + tipoPromocion + "/ [Costo total = " + this.getCosto() + ", Tiempo total = " + this.getTiempo() + " horas, Atracciones = " + atracciones + "]";
+		return "P " + tipoPromocion + "/ [Costo total = " + this.getCosto() + ", Tiempo total = " + this.getTiempo()
+				+ " horas, Atracciones = " + atracciones + "]";
 	}
-	
+
 }

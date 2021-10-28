@@ -1,9 +1,8 @@
 package turismo;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,31 +15,24 @@ public class ScannerDB {
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 	private AtraccionDAO atraccionDAO = new AtraccionDAO();
 	private PromocionDAO promocionDAO = new PromocionDAO();
-	private String archivoUsuarios;
-	private String archivoAtracciones;
-	private String archivoPromociones;
+	private ItinerarioDAO itinerarioDAO = new ItinerarioDAO();
 
-	public ScannerDB(String archivoUsuarios, String archivoAtracciones, String archivoPromociones) {
+	public ScannerDB() {
 		super();
-		this.archivoUsuarios = archivoUsuarios;
-		this.archivoAtracciones = archivoAtracciones;
-		this.archivoPromociones = archivoPromociones;
 	}
 
-	public void escanearUsuariosYProductos() throws UsuarioException, PromocionException, AtraccionException {
+	public void escanearUsuariosYProductos()
+			throws UsuarioException, PromocionException, AtraccionException, SQLException, ParseException {
 		List<Atraccion> atracciones = new LinkedList<Atraccion>();
 		List<Promocion> promociones = new LinkedList<Promocion>();
 
-		LectorUsuario lectorUsuario = new LectorUsuario();
-		ScannerDB.usuarios = lectorUsuario.leerUsuario(this.archivoUsuarios);
+		ScannerDB.usuarios = usuarioDAO.getAll();
 
-		LectorAtraccion lectorAtraccion = new LectorAtraccion();
-		atracciones = lectorAtraccion.leerAtraccion(this.archivoAtracciones);
+		atracciones = atraccionDAO.getAll();
 		productos.addAll(atracciones);
 
-		LectorPromocion lectorPromocion = new LectorPromocion();
-		promociones = lectorPromocion.leerPromocion(this.archivoPromociones, atracciones);
-		for(Promocion p : promociones) {
+		promociones = promocionDAO.getAll(atracciones);
+		for (Promocion p : promociones) {
 			p.aplicarPromocion();
 		}
 		productos.addAll(promociones);
@@ -80,6 +72,7 @@ public class ScannerDB {
 					else {
 						atraccionDAO.update(p);
 					}
+					itinerarioDAO.update(usuario, p);
 				}
 			} else {
 				try {
@@ -103,14 +96,6 @@ public class ScannerDB {
 		}
 		for (Usuario u : aux) {
 			System.out.println("Itinerario de " + u.getNombre() + ": " + u.getItinerario());
-			imprimirItinerarios(u, "src/archivosDeSalida/" + u.getNombre() + ".txt");
 		}
 	}
-
-	public void imprimirItinerarios(Usuario usuario, String file) throws IOException {
-		PrintWriter salida = new PrintWriter(new FileWriter(file));
-		salida.println("Itinerario de " + usuario.getNombre() + ": " + usuario.getItinerario());
-		salida.close();
-	}
-
 }

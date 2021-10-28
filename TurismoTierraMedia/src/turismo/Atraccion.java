@@ -15,9 +15,13 @@ public class Atraccion extends Producto {
 	public TipoDeAtraccion getTipo() {
 		return tipoDeAtraccion;
 	}
-	
+
 	public int getCuposOcupados() {
 		return cuposOcupados;
+	}
+
+	public int getCupo(){
+		return cupoMaximo - cuposOcupados;
 	}
 
 	@Override
@@ -29,7 +33,7 @@ public class Atraccion extends Producto {
 	public boolean hayCupo() {
 		return this.cuposOcupados < this.cupoMaximo;
 	}
-	
+
 	@Override
 	public void ocuparCupo() {
 		this.cuposOcupados += 1;
@@ -37,14 +41,13 @@ public class Atraccion extends Producto {
 
 	@Override
 	public String toString() {
-		return "A/ " + nombre + " [Tipo de atraccion = " + tipoDeAtraccion + ", Costo = " + costo + " monedas, Tiempo = " + tiempo
-				+ " horas, Cupo maximo = " + cupoMaximo + ", Cupos ocupados = " + cuposOcupados + "]";
+		return "A/ " + nombre + " [Tipo de atraccion = " + tipoDeAtraccion + ", Costo = " + costo
+				+ " monedas, Tiempo = " + tiempo + " horas, Cupo maximo = " + cupoMaximo + ", Cupos ocupados = "
+				+ cuposOcupados + "]";
 	}
-	
+
 	public String toStringCorto() {
-		return nombre + ", " + costo + " monedas, " + tiempo
-				+ " horas]";
+		return nombre + ", " + costo + " monedas, " + tiempo + " horas]";
 	}
 
 }
-
