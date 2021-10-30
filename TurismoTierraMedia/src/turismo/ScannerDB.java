@@ -32,9 +32,6 @@ public class ScannerDB {
 		productos.addAll(atracciones);
 
 		promociones = promocionDAO.getAll(atracciones);
-		for (Promocion p : promociones) {
-			p.aplicarPromocion();
-		}
 		productos.addAll(promociones);
 
 	}

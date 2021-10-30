@@ -11,7 +11,7 @@ public class PromocionPorcentual extends Promocion {
 	}
 	
 	public PromocionPorcentual(TipoDePromocion tipoPromocion, TipoDeAtraccion tipoDeAtraccion, int descuento) {
-		super( tipoPromocion, tipoDeAtraccion);
+		super(tipoPromocion, tipoDeAtraccion);
 		this.descuento = descuento;
 	}
 	
@@ -26,7 +26,7 @@ public class PromocionPorcentual extends Promocion {
 		for (Atraccion atraccion : this.atracciones) {
 			this.costo += atraccion.getCosto();		
 		}
-		this.costo = costo * this.descuento / 100;
+		this.costo -= costo * (this.descuento / 100);
 	}	
 
 }
